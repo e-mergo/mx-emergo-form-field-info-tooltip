@@ -1,0 +1,76 @@
+.form-field-with-info-tooltip {
+	.control-label {
+		&:is(.form-horizontal .tooltip-location-beforeInput .control-label) {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+		}
+	}
+
+	.tooltip-container {
+		display: inline-block;
+		position: relative;
+
+		&:is(.tooltip-location-beforeLabel .tooltip-container) {
+			margin-right: 8px;
+		}
+
+		&:is(.tooltip-location-afterLabel .tooltip-container),
+		&:is(.form-vertical .tooltip-location-beforeInput .tooltip-container) {
+			margin-left: 8px;
+		}
+
+		&:is(.form-horizontal .tooltip-location-beforeInput .tooltip-container) {
+			margin-right: -16px; // Default column padding-value
+			align-self: center;
+		}
+	}
+
+	.tooltip-btn {
+		padding: 0px;
+		margin: 0px;
+		border: 0px;
+		background: none;
+		border-radius: 50%;
+
+		&.tooltip-custom-icon img,
+		&.tooltip-custom-icon svg {
+			max-width: 1.3em;
+			max-height: 1.3em;
+		}
+
+		&:not(.tooltip-custom-icon):before {
+			content: "i";
+			display: block;
+			width: 1.3em;
+			height: 1.3em;
+			font-size: .85em;
+			color: #fff;
+			background: #0a1325;
+			text-align: center;
+			border-radius: 50%;
+		}
+
+		&.tooltip-on-hover,
+		&.tooltip-on-hoverFocus {
+			cursor: default;
+		}
+	}
+}
+
+.form-field-info-tooltip {
+	position: absolute;
+	width: max-content;
+	max-width: 300px;
+	z-index: 999; // Above all
+	color: #fff;
+	padding: 8px 12px;
+	background-color: #444;
+	border-radius: 2px;
+	pointer-events: none;
+	overflow: visible;
+
+	.tooltip-popup-arrow {
+		fill: #444;
+	}
+}
