@@ -8,7 +8,7 @@ import "./ui/FormFieldInfoTooltip.scss";
  *
  * @since 1.0.0
  *
- * @param {String} options.class:          Mendix widget class name.
+ * @param {String} options.class           Mendix widget class name.
  * @param {Array}  options.content         Widget child elements. Expected to contain a form field widget.
  * @param {String} options.tooltipText     Tooltip text attribute.
  * @param {Object} options.tooltipIcon     Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
