@@ -54,5 +54,8 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.0.1 - 20231010
+- Fixed bug where the tooltip icon would disappear due to overflow in the form field's label element.
+
 #### 1.0.0 - 20231009 - Mendix 9.24.3
 Initial release.
