@@ -35,6 +35,14 @@ export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipT
 			// Query the form field label element
 			controlLabel = contentRef.current.querySelector(".control-label");
 
+			// Wrap the label content
+			const labelContainer = document.createElement("span");
+			labelContainer.className = "label-content";
+			labelContainer.innerHTML = controlLabel.innerHTML;
+
+			// Replace label content
+			controlLabel.replaceChildren(labelContainer);
+
 			// Insert container at location
 			switch (tooltipLocation) {
 				case "beforeLabel":
@@ -49,8 +57,8 @@ export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipT
 
 			return () => {
 
-				// Remove container from location
-				controlLabel.removeChild(tooltipContainer);
+				// Remove container from location, unwrap label
+				controlLabel.replaceChildren(labelContainer.innerHTML);
 			};
 		}
 	});

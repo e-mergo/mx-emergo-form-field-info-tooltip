@@ -1,59 +1,55 @@
 .form-field-with-info-tooltip {
 	.control-label {
-		&:is(.form-horizontal .tooltip-location-beforeInput .control-label) {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-		}
-	}
+		display: flex;
+		flex-direction: row;
+		grid-gap: 10px;
 
-	.tooltip-container {
-		display: inline-block;
-		position: relative;
+		.label-content {
+			overflow: hidden;
+			text-overflow: ellipsis;
 
-		&:is(.tooltip-location-beforeLabel .tooltip-container) {
-			margin-right: 8px;
-		}
+			&:is(.form-horizontal .tooltip-location-beforeInput .label-content) {
 
-		&:is(.tooltip-location-afterLabel .tooltip-container),
-		&:is(.form-vertical .tooltip-location-beforeInput .tooltip-container) {
-			margin-left: 8px;
+				// Atlas UI defaults to min-width: 576px for the first breakpoint
+				@media (min-width: 576px) {
+					flex: 1;
+				}
+			}
 		}
 
-		&:is(.form-horizontal .tooltip-location-beforeInput .tooltip-container) {
-			margin-right: -16px; // Default column padding-value
+		.tooltip-container {
 			align-self: center;
 		}
-	}
 
-	.tooltip-btn {
-		padding: 0px;
-		margin: 0px;
-		border: 0px;
-		background: none;
-		border-radius: 50%;
-
-		&.tooltip-custom-icon img,
-		&.tooltip-custom-icon svg {
-			max-width: 1.3em;
-			max-height: 1.3em;
-		}
-
-		&:not(.tooltip-custom-icon):before {
-			content: "i";
-			display: block;
-			width: 1.3em;
-			height: 1.3em;
-			font-size: .85em;
-			color: #fff;
-			background: #0a1325;
-			text-align: center;
+		.tooltip-btn {
+			padding: 0px;
+			margin: 0px;
+			border: 0px;
+			background: none;
 			border-radius: 50%;
-		}
 
-		&.tooltip-on-hover,
-		&.tooltip-on-hoverFocus {
-			cursor: default;
+			&.tooltip-custom-icon img,
+			&.tooltip-custom-icon svg {
+				max-width: 1.3em;
+				max-height: 1.3em;
+			}
+
+			&:not(.tooltip-custom-icon):before {
+				content: "i";
+				display: block;
+				width: 1.3em;
+				height: 1.3em;
+				font-size: .85em;
+				color: #fff;
+				background: #0a1325;
+				text-align: center;
+				border-radius: 50%;
+			}
+
+			&.tooltip-on-hover,
+			&.tooltip-on-hoverFocus {
+				cursor: default;
+			}
 		}
 	}
 }
