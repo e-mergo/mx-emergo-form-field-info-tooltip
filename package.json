@@ -1,7 +1,7 @@
 {
   "name": "form-field-info-tooltip",
   "widgetName": "FormFieldInfoTooltip",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Information tooltips for your form fields",
   "author": "E-mergo, Laurens Offereins",
   "engines": {
