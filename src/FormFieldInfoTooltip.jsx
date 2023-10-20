@@ -68,6 +68,11 @@ export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipT
 		}
 	});
 
+	// Generate element only with children
+	if (! content.length) {
+		return null;
+	}
+
 	return (
 		<div ref={contentRef} className={`form-field-with-info-tooltip tooltip-location-${tooltipLocation}`}>
 			{content}
