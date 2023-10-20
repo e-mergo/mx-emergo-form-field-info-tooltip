@@ -35,6 +35,11 @@ export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipT
 			// Query the form field label element
 			controlLabel = contentRef.current.querySelector(".control-label");
 
+			// Bail when the label element is not found. Remove self from the DOM
+			if (! controlLabel) {
+				return;
+			}
+
 			// Wrap the label content
 			const labelContainer = document.createElement("span");
 			labelContainer.className = "label-content";
