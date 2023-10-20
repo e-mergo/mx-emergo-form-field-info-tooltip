@@ -11,15 +11,15 @@
 		<propertyGroup caption="General">
 			<property key="content" type="widgets">
 				<caption>Insert a form field</caption>
-				<description></description>
+				<description />
 			</property>
 			<property key="tooltipText" type="textTemplate" multiline="true">
 				<caption>Tooltip text</caption>
-				<description></description>
+				<description />
 			</property>
 			<property key="tooltipIcon" type="icon" required="false">
 				<caption>Tooltip icon</caption>
-				<description></description>
+				<description />
 			</property>
 			<property key="tooltipLocation" type="enumeration" defaultValue="beforeInput">
 				<caption>Tooltip location</caption>
