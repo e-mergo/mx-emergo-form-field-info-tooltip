@@ -1,5 +1,6 @@
 import { Fragment, createElement, useRef, useState } from "react";
 import { useFloating, useInteractions, useHover, useFocus, useClick, useDismiss, useRole, offset, flip, shift, arrow, autoUpdate, FloatingPortal, FloatingArrow } from "@floating-ui/react";
+import classNames from "classnames";
 
 /**
  * Tooltip element
@@ -81,13 +82,18 @@ export function Tooltip({ className, text, icon, position, interaction }) {
 
 	return (
 		<Fragment>
-			<button ref={refs.setReference} type="button" className={`tooltip-btn ${icon ? "tooltip-custom-icon" : "tooltip-default-icon"} tooltip-on-${interaction}`} {...getReferenceProps()} tabindex={enableFocus ? 0 : -1}>
-				{icon && icon.value.iconClass && <i className={`${"glyph" === icon.value.type ? "glyphicon " : ""}${icon.value.iconClass}`}></i>}
+			<button ref={refs.setReference} type="button" className={classNames("tooltip-btn", icon ? "tooltip-custom-icon" : "tooltip-default-icon", `tooltip-on-${interaction}`)} {...getReferenceProps()} tabIndex={enableFocus ? 0 : -1}>
+				{icon && icon.value.iconClass && <i className={classNames(
+					{
+						"glyphicon": "glyph" === icon.value.type
+					},
+					icon.value.iconClass
+				)}></i>}
 				{icon && icon.value.iconUrl && <img src={icon.value.iconUrl} />}
 			</button>
 			<FloatingPortal>
 				{showTooltip && (
-					<div ref={refs.setFloating} className={`${className} form-field-info-tooltip`} style={floatingStyles} {...getFloatingProps()}>
+					<div ref={refs.setFloating} className={classNames(className, "form-field-info-tooltip")} style={floatingStyles} {...getFloatingProps()}>
 						<div className="tooltip-popup-content">{text.value}</div>
 						<FloatingArrow className="tooltip-popup-arrow" ref={arrowRef} context={context}></FloatingArrow>
 					</div>
