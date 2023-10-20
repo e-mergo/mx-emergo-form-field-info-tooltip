@@ -15,8 +15,9 @@ import "./ui/FormFieldInfoTooltip.scss";
  * @param {String} options.tooltipLocation Tooltip location attribute.
  * @param {String} options.tooltipPosition Tooltip position attribute.
  * @param {String} options.openOn          Tooltip interaction attribute.
+ * @param {String} options.name            Mendix widget element name.
  */
-export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipText, tooltipIcon, tooltipLocation, tooltipPosition, openOn }) {
+export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipText, tooltipIcon, tooltipLocation, tooltipPosition, openOn, name }) {
 
 	// Define reference for the widget element
 	const contentRef = useRef(null);
@@ -24,6 +25,11 @@ export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipT
 	// Setup container element
 	const tooltipContainer = document.createElement("div");
 	tooltipContainer.className = "tooltip-container";
+
+	// Log issue with nested conditional visibility
+	if (content.length && content[0].props.hasOwnProperty("visible")) {
+		console.error(`${name}: Widget cannot properly handle nested widgets with conditional visibility. Apply conditional visibility to the tooltip widget itself.`);
+	}
 
 	// Act when rendering the element
 	useEffect(() => {
