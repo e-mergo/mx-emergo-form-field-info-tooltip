@@ -54,6 +54,9 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.0.3 - 20231020
+- Fixed rendering widget with hidden child widgets.
+
 #### 1.0.2 - 20231011
 - Fixed widget package version update.
 
