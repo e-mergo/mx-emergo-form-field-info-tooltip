@@ -76,6 +76,11 @@ the availability of E-mergo developers your request may be considered and includ
 
 ## Changelog
 
+#### 1.0.4 - 20231027
+
+-   Updated the default icon to use a better looking SVG image.
+-   Fixed codebase formatting following Prettier principles.
+
 #### 1.0.3 - 20231020
 
 -   Fixed rendering widget with hidden child widgets.
