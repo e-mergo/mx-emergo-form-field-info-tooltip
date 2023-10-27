@@ -1,5 +1,6 @@
-import { Fragment, createElement, useRef, useEffect } from "react";
+import { createElement, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { noop } from "lodash";
 import { Tooltip } from "./components/Tooltip";
 import "./ui/FormFieldInfoTooltip.scss";
 
@@ -17,70 +18,86 @@ import "./ui/FormFieldInfoTooltip.scss";
  * @param {String} options.openOn          Tooltip interaction attribute.
  * @param {String} options.name            Mendix widget element name.
  */
-export function FormFieldInfoTooltip({ class: widgetClassName, content, tooltipText, tooltipIcon, tooltipLocation, tooltipPosition, openOn, name }) {
+export function FormFieldInfoTooltip({
+    class: widgetClassName,
+    content,
+    tooltipText,
+    tooltipIcon,
+    tooltipLocation,
+    tooltipPosition,
+    openOn,
+    name
+}) {
+    // Define reference for the widget element
+    const contentRef = useRef(null);
 
-	// Define reference for the widget element
-	const contentRef = useRef(null);
+    // Setup container element
+    const tooltipContainer = document.createElement("div");
+    tooltipContainer.className = "tooltip-container";
 
-	// Setup container element
-	const tooltipContainer = document.createElement("div");
-	tooltipContainer.className = "tooltip-container";
+    // Log issue with nested conditional visibility
+    if (content.length && content[0].props.hasOwnProperty("visible")) {
+        console.error(
+            `${name}: Widget cannot properly handle nested widgets with conditional visibility. Apply conditional visibility to the tooltip widget itself.`
+        );
+    }
 
-	// Log issue with nested conditional visibility
-	if (content.length && content[0].props.hasOwnProperty("visible")) {
-		console.error(`${name}: Widget cannot properly handle nested widgets with conditional visibility. Apply conditional visibility to the tooltip widget itself.`);
-	}
+    // Act when rendering the element
+    useEffect(() => {
+        let controlLabel;
 
-	// Act when rendering the element
-	useEffect(() => {
-		let controlLabel;
+        // When the widget element is rendered
+        if (contentRef.current) {
+            // Query the form field label element
+            controlLabel = contentRef.current.querySelector(".control-label");
 
-		// When the widget element is rendered
-		if (contentRef.current) {
+            // Bail when the label element is not found
+            if (!controlLabel) {
+                return noop;
+            }
 
-			// Query the form field label element
-			controlLabel = contentRef.current.querySelector(".control-label");
+            // Wrap the label content
+            const labelContainer = document.createElement("span");
+            labelContainer.className = "label-content";
+            labelContainer.innerHTML = controlLabel.innerHTML;
 
-			// Bail when the label element is not found. Remove self from the DOM
-			if (! controlLabel) {
-				return;
-			}
+            // Replace label content
+            controlLabel.replaceChildren(labelContainer);
 
-			// Wrap the label content
-			const labelContainer = document.createElement("span");
-			labelContainer.className = "label-content";
-			labelContainer.innerHTML = controlLabel.innerHTML;
+            // Insert container at location
+            switch (tooltipLocation) {
+                case "beforeLabel":
+                    controlLabel.prepend(tooltipContainer);
+                    break;
+                case "afterLabel":
+                case "beforeInput":
+                default:
+                    controlLabel.append(tooltipContainer);
+                    break;
+            }
 
-			// Replace label content
-			controlLabel.replaceChildren(labelContainer);
+            return () => {
+                // Remove container from location, unwrap label
+                controlLabel.replaceChildren(labelContainer.innerHTML);
+            };
+        }
 
-			// Insert container at location
-			switch (tooltipLocation) {
-				case "beforeLabel":
-					controlLabel.prepend(tooltipContainer);
-					break;
-				case "afterLabel":
-				case "beforeInput":
-				default:
-					controlLabel.append(tooltipContainer);
-					break;
-			}
+        return noop;
+    });
 
-			return () => {
-
-				// Remove container from location, unwrap label
-				controlLabel.replaceChildren(labelContainer.innerHTML);
-			};
-		}
-	});
-
-	return (
-		<div ref={contentRef} className={`form-field-with-info-tooltip tooltip-location-${tooltipLocation}`}>
-			{content}
-			{createPortal(
-				<Tooltip className={widgetClassName} text={tooltipText} icon={tooltipIcon} position={tooltipPosition} interaction={openOn} />,
-				tooltipContainer
-			)}
-		</div>
-	);
+    return (
+        <div ref={contentRef} className={`form-field-with-info-tooltip tooltip-location-${tooltipLocation}`}>
+            {content}
+            {createPortal(
+                <Tooltip
+                    className={widgetClassName}
+                    text={tooltipText}
+                    icon={tooltipIcon}
+                    position={tooltipPosition}
+                    interaction={openOn}
+                />,
+                tooltipContainer
+            )}
+        </div>
+    );
 }

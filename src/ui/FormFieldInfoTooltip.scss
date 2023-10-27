@@ -1,72 +1,71 @@
 .form-field-with-info-tooltip {
-	.control-label {
-		display: flex;
-		flex-direction: row;
-		grid-gap: 10px;
+    .control-label {
+        display: flex;
+        flex-direction: row;
+        grid-gap: 10px;
 
-		.label-content {
-			overflow: hidden;
-			text-overflow: ellipsis;
+        .label-content {
+            overflow: hidden;
+            text-overflow: ellipsis;
 
-			&:is(.form-horizontal .tooltip-location-beforeInput .label-content) {
+            &:is(.form-horizontal .tooltip-location-beforeInput .label-content) {
+                // Atlas UI defaults to min-width: 576px for the first breakpoint
+                @media (min-width: 576px) {
+                    flex: 1;
+                }
+            }
+        }
 
-				// Atlas UI defaults to min-width: 576px for the first breakpoint
-				@media (min-width: 576px) {
-					flex: 1;
-				}
-			}
-		}
+        .tooltip-container {
+            align-self: center;
+        }
 
-		.tooltip-container {
-			align-self: center;
-		}
+        .tooltip-btn {
+            padding: 0px;
+            margin: 0px;
+            border: 0px;
+            background: none;
+            border-radius: 50%;
 
-		.tooltip-btn {
-			padding: 0px;
-			margin: 0px;
-			border: 0px;
-			background: none;
-			border-radius: 50%;
+            &.tooltip-custom-icon img,
+            &.tooltip-custom-icon svg {
+                max-width: 1.3em;
+                max-height: 1.3em;
+            }
 
-			&.tooltip-custom-icon img,
-			&.tooltip-custom-icon svg {
-				max-width: 1.3em;
-				max-height: 1.3em;
-			}
+            &:not(.tooltip-custom-icon):before {
+                content: "i";
+                display: block;
+                width: 1.3em;
+                height: 1.3em;
+                font-size: 0.85em;
+                color: #fff;
+                background: #0a1325;
+                text-align: center;
+                border-radius: 50%;
+            }
 
-			&:not(.tooltip-custom-icon):before {
-				content: "i";
-				display: block;
-				width: 1.3em;
-				height: 1.3em;
-				font-size: .85em;
-				color: #fff;
-				background: #0a1325;
-				text-align: center;
-				border-radius: 50%;
-			}
-
-			&.tooltip-on-hover,
-			&.tooltip-on-hoverFocus {
-				cursor: default;
-			}
-		}
-	}
+            &.tooltip-on-hover,
+            &.tooltip-on-hoverFocus {
+                cursor: default;
+            }
+        }
+    }
 }
 
 .form-field-info-tooltip {
-	position: absolute;
-	width: max-content;
-	max-width: 300px;
-	z-index: 999; // Above all
-	color: #fff;
-	padding: 8px 12px;
-	background-color: #444;
-	border-radius: 2px;
-	pointer-events: none;
-	overflow: visible;
+    position: absolute;
+    width: max-content;
+    max-width: 300px;
+    z-index: 999; // Above all
+    color: #fff;
+    padding: 8px 12px;
+    background-color: #444;
+    border-radius: 2px;
+    pointer-events: none;
+    overflow: visible;
 
-	.tooltip-popup-arrow {
-		fill: #444;
-	}
+    .tooltip-popup-arrow {
+        fill: #444;
+    }
 }
