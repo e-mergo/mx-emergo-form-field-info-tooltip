@@ -27,22 +27,10 @@
             background: none;
             border-radius: 50%;
 
-            &.tooltip-custom-icon img,
-            &.tooltip-custom-icon svg {
+            img,
+            svg {
                 max-width: 1.3em;
                 max-height: 1.3em;
-            }
-
-            &:not(.tooltip-custom-icon):before {
-                content: "i";
-                display: block;
-                width: 1.3em;
-                height: 1.3em;
-                font-size: 0.85em;
-                color: #fff;
-                background: #0a1325;
-                text-align: center;
-                border-radius: 50%;
             }
 
             &.tooltip-on-hover,

@@ -16,6 +16,7 @@ import {
     FloatingArrow
 } from "@floating-ui/react";
 import classNames from "classnames";
+import pathToDefaultIconSvg from "../assets/default-icon.svg";
 
 /**
  * Tooltip element
@@ -109,6 +110,7 @@ export function Tooltip({ className, text, icon, position, interaction }) {
                     ></i>
                 )}
                 {icon && icon.value.iconUrl && <img src={icon.value.iconUrl} />}
+                {icon ? null : <img src={pathToDefaultIconSvg} />}
             </button>
             <FloatingPortal>
                 {showTooltip && (

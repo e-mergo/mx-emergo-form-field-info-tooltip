@@ -5,7 +5,7 @@ module.exports = {
     plugins: [require.resolve("@prettier/plugin-xml")],
     overrides: [
         {
-            files: "*.xml",
+            files: ["*.xml", "*.svg"],
             options: {
                 xmlWhitespaceSensitivity: "strict"
             }
