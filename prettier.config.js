@@ -9,6 +9,12 @@ module.exports = {
             options: {
                 xmlWhitespaceSensitivity: "strict"
             }
+        },
+        {
+            files: ["*.md"],
+            options: {
+                proseWrap: "never"
+            }
         }
     ]
 };
