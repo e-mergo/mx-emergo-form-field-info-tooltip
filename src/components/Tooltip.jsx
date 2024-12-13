@@ -91,7 +91,7 @@ export function Tooltip({ className, text, icon, position, interaction }) {
         <Fragment>
             <TooltipButton
                 ref={refs.setReference}
-                className={`tooltip-on-${interaction}`}
+                className={classNames(className, `tooltip-on-${interaction}`)}
                 icon={icon}
                 enableFocus={enableFocus}
                 {...getReferenceProps()}
@@ -100,7 +100,7 @@ export function Tooltip({ className, text, icon, position, interaction }) {
                 {showTooltip && (
                     <div
                         ref={refs.setFloating}
-                        className={classNames(className, "form-field-info-tooltip")}
+                        class="form-field-info-tooltip"
                         style={floatingStyles}
                         {...getFloatingProps()}
                     >

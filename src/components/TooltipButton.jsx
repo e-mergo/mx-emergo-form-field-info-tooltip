@@ -19,6 +19,7 @@ export const TooltipButton = forwardRef(({ className, icon, enableFocus, ...prop
             ref={forwardedRef}
             type="button"
             className={classNames(
+                className,
                 "ffit-tooltip-btn",
                 "tooltip-btn", // For back-compat
                 icon ? "tooltip-custom-icon" : "tooltip-default-icon"
