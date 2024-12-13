@@ -29,8 +29,9 @@ import pathToDefaultIconSvg from "../assets/default-icon.svg";
  * @param {Object} options.icon        Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String} options.position    Tooltip position attribute.
  * @param {String} options.interaction Tooltip interaction attribute.
+ * @param {Array}  options.target      Optional. Tooltip target.
  */
-export function Tooltip({ className, text, icon, position, interaction }) {
+export function Tooltip({ className, text, icon, position, interaction, target }) {
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -39,6 +40,9 @@ export function Tooltip({ className, text, icon, position, interaction }) {
 
     // Define reference for the tooltip arrow element
     const arrowRef = useRef(null);
+
+    // Define whether a target is provided
+    const hasTarget = target && !!target.length;
 
     // Configuration of Floating UI
     const {
@@ -89,13 +93,25 @@ export function Tooltip({ className, text, icon, position, interaction }) {
 
     return (
         <Fragment>
-            <TooltipButton
-                ref={refs.setReference}
-                className={classNames(className, `tooltip-on-${interaction}`)}
-                icon={icon}
-                tabIndex={enableFocus ? 0 : -1}
-                {...getReferenceProps()}
-            />
+            {hasTarget && (
+                <div
+                    ref={refs.setReference}
+                    className={classNames(className, "ffit-widget-info-tooltip")}
+                    tabIndex={enableFocus ? 0 : -1}
+                    {...getReferenceProps()}
+                >
+                    {target}
+                </div>
+            )}
+            {!hasTarget && (
+                <TooltipButton
+                    ref={refs.setReference}
+                    className={classNames(className, "ffit-standalone-info-tooltip", `tooltip-on-${interaction}`)}
+                    icon={icon}
+                    tabIndex={enableFocus ? 0 : -1}
+                    {...getReferenceProps()}
+                />
+            )}
             <FloatingPortal>
                 {showTooltip && (
                     <div

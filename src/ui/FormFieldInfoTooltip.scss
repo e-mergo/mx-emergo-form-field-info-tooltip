@@ -22,6 +22,18 @@
     }
 }
 
+.ffit-widget-info-tooltip {
+    display: block;
+
+    &:has(> button) {
+        display: inline-block;
+    }
+
+    &:has(> span) {
+        display: inline;
+    }
+}
+
 .ffit-tooltip-btn {
     padding: 0px;
     margin: 0px;

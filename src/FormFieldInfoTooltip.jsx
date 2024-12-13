@@ -1,7 +1,7 @@
-import { createElement, useEffect, useRef } from "react";
+import { createElement, Fragment, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
-import { noop } from "lodash";
 import { Tooltip } from "./components/Tooltip";
+import classNames from "classnames";
 import "./ui/FormFieldInfoTooltip.scss";
 
 /**
@@ -10,7 +10,9 @@ import "./ui/FormFieldInfoTooltip.scss";
  * @since 1.0.0
  *
  * @param {String} options.class           Mendix widget class name.
- * @param {Array}  options.content         Widget child elements. Expected to contain a form field widget.
+ * @param {Object} options.tooltipType     Widget type attribute.
+ * @param {Array}  options.content         Form field child elements.
+ * @param {Array}  options.widgetContent   Widget child elements.
  * @param {String} options.tooltipText     Tooltip text attribute.
  * @param {Object} options.tooltipIcon     Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String} options.tooltipLocation Tooltip location attribute.
@@ -20,7 +22,9 @@ import "./ui/FormFieldInfoTooltip.scss";
  */
 export function FormFieldInfoTooltip({
     class: widgetClassName,
-    content,
+    tooltipType,
+    content: formFieldContent,
+    widgetContent,
     tooltipText,
     tooltipIcon,
     tooltipLocation,
@@ -29,14 +33,23 @@ export function FormFieldInfoTooltip({
     name
 }) {
     // Define reference for the widget element
-    const contentRef = useRef(null);
+    const formFieldContainerRef = useRef(null);
+
+    // Check type: Form field
+    const isFormFieldType = "formField" === tooltipType;
+
+    // Check type: Widget or Standalone
+    const isWidgetOrStandaloneType = "widget" === tooltipType || "standalone" === tooltipType;
+
+    // Define noop for
+    const noop = () => {};
 
     // Setup container element
     const tooltipContainer = document.createElement("div");
     tooltipContainer.className = "tooltip-container";
 
     // Log issue with nested conditional visibility
-    if (content.length && content[0].props.hasOwnProperty("visible")) {
+    if (isFormFieldType && formFieldContent.length && formFieldContent[0].props.hasOwnProperty("visible")) {
         console.error(
             `${name}: Widget cannot properly handle nested widgets with conditional visibility. Apply conditional visibility to the tooltip widget itself.`
         );
@@ -46,10 +59,10 @@ export function FormFieldInfoTooltip({
     useEffect(() => {
         let controlLabel;
 
-        // When the widget element is rendered
-        if (contentRef.current) {
+        // Form field: when the widget element is rendered
+        if (isFormFieldType && formFieldContainerRef.current) {
             // Query the form field label element
-            controlLabel = contentRef.current.querySelector(".control-label");
+            controlLabel = formFieldContainerRef.current.querySelector(".control-label");
 
             // Bail when the label element is not found
             if (!controlLabel) {
@@ -86,18 +99,38 @@ export function FormFieldInfoTooltip({
     });
 
     return (
-        <div ref={contentRef} className={`form-field-with-info-tooltip tooltip-location-${tooltipLocation}`}>
-            {content}
-            {createPortal(
+        <Fragment>
+            {isFormFieldType && (
+                <div
+                    ref={formFieldContainerRef}
+                    className={classNames(
+                        { "form-field-with-info-tooltip": isFormFieldType },
+                        isFormFieldType ? `tooltip-location-${tooltipLocation}` : null
+                    )}
+                >
+                    {formFieldContent}
+                    {createPortal(
+                        <Tooltip
+                            className={widgetClassName}
+                            text={tooltipText}
+                            icon={tooltipIcon}
+                            position={tooltipPosition}
+                            interaction={openOn}
+                        />,
+                        tooltipContainer
+                    )}
+                </div>
+            )}
+            {isWidgetOrStandaloneType && (
                 <Tooltip
                     className={widgetClassName}
                     text={tooltipText}
                     icon={tooltipIcon}
                     position={tooltipPosition}
                     interaction={openOn}
-                />,
-                tooltipContainer
+                    target={widgetContent}
+                />
             )}
-        </div>
+        </Fragment>
     );
 }

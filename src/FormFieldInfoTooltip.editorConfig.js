@@ -1,11 +1,51 @@
+import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
+
+// Define form field specific properties
+const typeFormFieldKeys = ["tooltipLocation", "content"];
+
+// Define widget specific properties
+const typeWidgetKeys = ["widgetContent"];
+
+// Define standalone specific properties
+const typeStandaloneKeys = [];
+
+// Define conditional properties for tooltip types
+const keysToHideByTooltipType = {
+    formField: [...typeWidgetKeys, ...typeStandaloneKeys],
+    widget: [...typeFormFieldKeys, ...typeStandaloneKeys, "tooltipIcon"],
+    standalone: [...typeFormFieldKeys, ...typeWidgetKeys]
+};
+
 /**
  * Control visibility of properties in Studio Pro
  *
  * @param {object} values
  * @param {Properties} defaultProperties
- * @param {("web"|"desktop")} target
+ * @param {String} target
  * @returns {Properties}
  */
 export function getProperties(values, defaultProperties, target) {
+    // Conditional event property
+    hidePropertiesIn(defaultProperties, values, [...keysToHideByTooltipType[values.tooltipType]]);
+
     return defaultProperties;
+}
+
+/**
+ * Return the custom widget caption
+ *
+ * @param {Object} values
+ * @param {String} platform
+ * @return {String} Custom caption
+ */
+export function getCustomCaption(values, platform) {
+    switch (values.tooltipType) {
+        case "widget":
+            return "Widget Info Tooltip";
+        case "standalone":
+            return "Info Tooltip";
+        case "formField":
+        default:
+            return "Form Field Info Tooltip";
+    }
 }

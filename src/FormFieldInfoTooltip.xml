@@ -10,27 +10,32 @@
     xsi:schemaLocation="http://www.mendix.com/widget/1.0/ ../node_modules/mendix/custom_widget.xsd"
 >
     <name>Form Field Info Tooltip</name>
-    <description>Mendix custom widget for adding a contextual information tooltip to a form field</description>
+    <description>Mendix custom widget for adding a contextual information tooltip to a form field.</description>
     <studioProCategory>Display</studioProCategory>
     <icon />
     <properties>
         <propertyGroup caption="General">
-            <property key="content" type="widgets">
-                <caption>Insert a form field</caption>
+            <property key="tooltipType" type="enumeration" defaultValue="formField">
+                <caption>Type</caption>
                 <description />
+                <enumerationValues>
+                    <enumerationValue key="formField">Form field</enumerationValue>
+                    <enumerationValue key="widget">Widget</enumerationValue>
+                    <enumerationValue key="standalone">Standalone</enumerationValue>
+                </enumerationValues>
             </property>
             <property key="tooltipText" type="textTemplate" multiline="true">
-                <caption>Tooltip text</caption>
+                <caption>Tooltip</caption>
                 <description />
             </property>
             <property key="tooltipIcon" type="icon" required="false">
-                <caption>Tooltip icon</caption>
+                <caption>Icon</caption>
                 <description />
             </property>
             <property key="tooltipLocation" type="enumeration" defaultValue="beforeInput">
-                <caption>Tooltip location</caption>
+                <caption>Placement</caption>
                 <description
-                >Where to position the tooltip icon in relation to the form field - before the label, after the label or before the input field. When in Horizontal mode, the "Before input" location will be rendered as "After label".</description>
+                >Where to place the tooltip icon in relation to the form field - before the label, after the label or before the input field. In vertical form orientation, the "Before input" placement will be rendered as "After label".</description>
                 <enumerationValues>
                     <enumerationValue key="beforeLabel">Before label</enumerationValue>
                     <enumerationValue key="afterLabel">After label</enumerationValue>
@@ -38,9 +43,9 @@
                 </enumerationValues>
             </property>
             <property key="tooltipPosition" type="enumeration" defaultValue="top">
-                <caption>Tooltip position</caption>
+                <caption>Position</caption>
                 <description
-                >How to position the tooltip in relation to the tooltip icon - at the top, to the left, at the bottom or to the right.</description>
+                >How to position the tooltip in relation to the tooltip target - at the top, to the left, at the bottom or to the right.</description>
                 <enumerationValues>
                     <enumerationValue key="top">Top</enumerationValue>
                     <enumerationValue key="left">Left</enumerationValue>
@@ -57,6 +62,14 @@
                     <enumerationValue key="hover">Hover</enumerationValue>
                     <enumerationValue key="hoverFocus">Hover, focus</enumerationValue>
                 </enumerationValues>
+            </property>
+            <property key="content" type="widgets" required="true">
+                <caption>Insert form field</caption>
+                <description />
+            </property>
+            <property key="widgetContent" type="widgets" required="true">
+                <caption>Insert widget</caption>
+                <description />
             </property>
         </propertyGroup>
     </properties>
