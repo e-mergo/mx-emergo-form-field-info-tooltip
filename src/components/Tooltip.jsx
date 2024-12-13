@@ -16,6 +16,7 @@ import {
     FloatingArrow
 } from "@floating-ui/react";
 import classNames from "classnames";
+import { TooltipButton } from "./TooltipButton";
 import pathToDefaultIconSvg from "../assets/default-icon.svg";
 
 /**
@@ -88,30 +89,13 @@ export function Tooltip({ className, text, icon, position, interaction }) {
 
     return (
         <Fragment>
-            <button
+            <TooltipButton
                 ref={refs.setReference}
-                type="button"
-                className={classNames(
-                    "tooltip-btn",
-                    icon ? "tooltip-custom-icon" : "tooltip-default-icon",
-                    `tooltip-on-${interaction}`
-                )}
+                className={`tooltip-on-${interaction}`}
+                icon={icon}
+                enableFocus={enableFocus}
                 {...getReferenceProps()}
-                tabIndex={enableFocus ? 0 : -1}
-            >
-                {icon && icon.value.iconClass && (
-                    <i
-                        className={classNames(
-                            {
-                                glyphicon: "glyph" === icon.value.type
-                            },
-                            icon.value.iconClass
-                        )}
-                    ></i>
-                )}
-                {icon && icon.value.iconUrl && <img src={icon.value.iconUrl} />}
-                {icon ? null : <img src={pathToDefaultIconSvg} />}
-            </button>
+            />
             <FloatingPortal>
                 {showTooltip && (
                     <div

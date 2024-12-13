@@ -2,7 +2,7 @@
     .control-label {
         display: flex;
         flex-direction: row;
-        grid-gap: 10px;
+        grid-gap: 5px;
 
         .label-content {
             overflow: hidden;
@@ -19,25 +19,25 @@
         .tooltip-container {
             align-self: center;
         }
+    }
+}
 
-        .tooltip-btn {
-            padding: 0px;
-            margin: 0px;
-            border: 0px;
-            background: none;
-            border-radius: 50%;
+.ffit-tooltip-btn {
+    padding: 0px;
+    margin: 0px;
+    border: 0px;
+    background: none;
+    border-radius: 50%;
 
-            img,
-            svg {
-                max-width: 1.3em;
-                max-height: 1.3em;
-            }
+    img,
+    svg {
+        max-width: 1.3em;
+        max-height: 1.3em;
+    }
 
-            &.tooltip-on-hover,
-            &.tooltip-on-hoverFocus {
-                cursor: default;
-            }
-        }
+    &.tooltip-on-hover,
+    &.tooltip-on-hoverFocus {
+        cursor: default;
     }
 }
 
