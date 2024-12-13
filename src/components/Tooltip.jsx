@@ -17,7 +17,6 @@ import {
 } from "@floating-ui/react";
 import classNames from "classnames";
 import { TooltipButton } from "./TooltipButton";
-import pathToDefaultIconSvg from "../assets/default-icon.svg";
 
 /**
  * Tooltip element
@@ -116,7 +115,7 @@ export function Tooltip({ className, text, icon, position, interaction, target }
                 {showTooltip && (
                     <div
                         ref={refs.setFloating}
-                        class="form-field-info-tooltip"
+                        className="form-field-info-tooltip"
                         style={floatingStyles}
                         {...getFloatingProps()}
                     >
