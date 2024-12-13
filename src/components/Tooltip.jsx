@@ -93,7 +93,7 @@ export function Tooltip({ className, text, icon, position, interaction }) {
                 ref={refs.setReference}
                 className={classNames(className, `tooltip-on-${interaction}`)}
                 icon={icon}
-                enableFocus={enableFocus}
+                tabIndex={enableFocus ? 0 : -1}
                 {...getReferenceProps()}
             />
             <FloatingPortal>

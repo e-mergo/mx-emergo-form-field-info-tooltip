@@ -9,11 +9,10 @@ import { Icon } from "./Icon";
  *
  * @since 1.1.0
  *
- * @param {String}  options.className   Tooltip button class name.
- * @param {Object}  options.icon        Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {Boolean} options.enableFocus Whether the button is focussable.
+ * @param {String} options.className Tooltip button class name.
+ * @param {Object} options.icon      Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  */
-export const TooltipButton = forwardRef(({ className, icon, enableFocus, ...props }, forwardedRef) => {
+export const TooltipButton = forwardRef(({ className, icon, ...props }, forwardedRef) => {
     return (
         <button
             ref={forwardedRef}
@@ -25,7 +24,6 @@ export const TooltipButton = forwardRef(({ className, icon, enableFocus, ...prop
                 icon ? "tooltip-custom-icon" : "tooltip-default-icon"
             )}
             {...props}
-            tabIndex={enableFocus ? 0 : -1}
         >
             <Icon icon={icon} />
         </button>
