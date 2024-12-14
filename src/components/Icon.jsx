@@ -1,6 +1,5 @@
 import { Fragment, createElement } from "react";
 import classNames from "classnames";
-import pathToDefaultIconSvg from "../assets/default-icon.svg";
 
 /**
  * Icon element
@@ -24,7 +23,7 @@ export function Icon({ icon }) {
                 ></i>
             )}
             {icon && icon.value.iconUrl && <img aria-hidden src={icon.value.iconUrl} />}
-            {icon ? null : <img src={pathToDefaultIconSvg} />}
+            {icon ? null : <i aria-hidden className="mx-icon-filled mx-icon-question-circle"></i>}
         </Fragment>
     );
 }
