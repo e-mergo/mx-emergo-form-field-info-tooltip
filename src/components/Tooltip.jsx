@@ -23,14 +23,15 @@ import { TooltipButton } from "./TooltipButton";
  *
  * @since 1.0.0
  *
- * @param {String} options.className   Mendix widget class name.
- * @param {String} options.text        Tooltip text attribute.
- * @param {Object} options.icon        Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String} options.position    Tooltip position attribute.
- * @param {String} options.interaction Tooltip interaction attribute.
- * @param {Array}  options.target      Optional. Tooltip target.
+ * @param {String} options.className        Mendix widget class name.
+ * @param {String} options.text             Tooltip text attribute.
+ * @param {String} options.tooltipClassName Tooltip class attribute.
+ * @param {Object} options.icon             Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} options.position         Tooltip position attribute.
+ * @param {String} options.interaction      Tooltip interaction attribute.
+ * @param {Array}  options.target           Optional. Tooltip target.
  */
-export function Tooltip({ className, text, icon, position, interaction, target }) {
+export function Tooltip({ className, text, tooltipClassName, icon, position, interaction, target }) {
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -95,7 +96,7 @@ export function Tooltip({ className, text, icon, position, interaction, target }
             {hasTarget && (
                 <div
                     ref={refs.setReference}
-                    className={classNames(className, "ffit-widget-info-tooltip")}
+                    className={classNames("ffit-widget-info-tooltip", className)}
                     tabIndex={enableFocus ? 0 : -1}
                     {...getReferenceProps()}
                 >
@@ -105,7 +106,7 @@ export function Tooltip({ className, text, icon, position, interaction, target }
             {!hasTarget && (
                 <TooltipButton
                     ref={refs.setReference}
-                    className={classNames(className, "ffit-standalone-info-tooltip", `tooltip-on-${interaction}`)}
+                    className={classNames("ffit-standalone-info-tooltip", `tooltip-on-${interaction}`, className)}
                     icon={icon}
                     tabIndex={enableFocus ? 0 : -1}
                     {...getReferenceProps()}
@@ -115,7 +116,11 @@ export function Tooltip({ className, text, icon, position, interaction, target }
                 {showTooltip && (
                     <div
                         ref={refs.setFloating}
-                        className="form-field-info-tooltip"
+                        className={classNames(
+                            "ffit-tooltip-popup",
+                            /* For backcompat */ "form-field-info-tooltip",
+                            tooltipClassName.value
+                        )}
                         style={floatingStyles}
                         {...getFloatingProps()}
                     >

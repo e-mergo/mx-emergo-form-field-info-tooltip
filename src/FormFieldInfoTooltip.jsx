@@ -9,16 +9,17 @@ import "./ui/FormFieldInfoTooltip.scss";
  *
  * @since 1.0.0
  *
- * @param {String} options.class           Mendix widget class name.
- * @param {Object} options.tooltipType     Widget type attribute.
- * @param {Array}  options.content         Form field child elements.
- * @param {Array}  options.widgetContent   Widget child elements.
- * @param {String} options.tooltipText     Tooltip text attribute.
- * @param {Object} options.tooltipIcon     Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String} options.tooltipLocation Tooltip location attribute.
- * @param {String} options.tooltipPosition Tooltip position attribute.
- * @param {String} options.openOn          Tooltip interaction attribute.
- * @param {String} options.name            Mendix widget element name.
+ * @param {String} options.class            Mendix widget class name.
+ * @param {Object} options.tooltipType      Widget type attribute.
+ * @param {Array}  options.content          Form field child elements.
+ * @param {Array}  options.widgetContent    Widget child elements.
+ * @param {String} options.tooltipText      Tooltip text attribute.
+ * @param {String} options.tooltipClassName Tooltip class attribute.
+ * @param {Object} options.tooltipIcon      Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} options.tooltipLocation  Tooltip location attribute.
+ * @param {String} options.tooltipPosition  Tooltip position attribute.
+ * @param {String} options.openOn           Tooltip interaction attribute.
+ * @param {String} options.name             Mendix widget element name.
  */
 export function FormFieldInfoTooltip({
     class: widgetClassName,
@@ -26,6 +27,7 @@ export function FormFieldInfoTooltip({
     content: formFieldContent,
     widgetContent,
     tooltipText,
+    tooltipClassName,
     tooltipIcon,
     tooltipLocation,
     tooltipPosition,
@@ -112,6 +114,7 @@ export function FormFieldInfoTooltip({
                     {createPortal(
                         <Tooltip
                             className={widgetClassName}
+                            tooltipClassName={tooltipClassName}
                             text={tooltipText}
                             icon={tooltipIcon}
                             position={tooltipPosition}
@@ -124,6 +127,7 @@ export function FormFieldInfoTooltip({
             {isWidgetOrStandaloneType && (
                 <Tooltip
                     className={widgetClassName}
+                    tooltipClassName={tooltipClassName}
                     text={tooltipText}
                     icon={tooltipIcon}
                     position={tooltipPosition}

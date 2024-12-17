@@ -28,6 +28,11 @@
                 <caption>Tooltip</caption>
                 <description />
             </property>
+            <property key="tooltipClassName" type="expression" required="false">
+                <caption>Tooltip class</caption>
+                <description />
+                <returnType type="String" />
+            </property>
             <property key="tooltipIcon" type="icon" required="false">
                 <caption>Icon</caption>
                 <description />

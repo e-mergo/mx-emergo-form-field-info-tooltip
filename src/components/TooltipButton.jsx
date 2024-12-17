@@ -19,7 +19,7 @@ export const TooltipButton = forwardRef(({ className, icon, ...props }, forwarde
         className={classNames(
             className,
             "ffit-tooltip-btn",
-            "tooltip-btn", // For back-compat
+            /* For back-compat */ "tooltip-btn",
             icon ? "tooltip-custom-icon" : "tooltip-default-icon"
         )}
         {...props}
