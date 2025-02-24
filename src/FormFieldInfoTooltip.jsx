@@ -10,7 +10,7 @@ import "./ui/FormFieldInfoTooltip.scss";
  * @since 1.0.0
  *
  * @param {String} options.class            Mendix widget class name.
- * @param {Object} options.tooltipType      Widget type attribute.
+ * @param {Object} options.tooltipMode      Widget mode attribute.
  * @param {Array}  options.content          Form field child elements.
  * @param {Array}  options.widgetContent    Widget child elements.
  * @param {String} options.tooltipText      Tooltip text attribute.
@@ -23,7 +23,7 @@ import "./ui/FormFieldInfoTooltip.scss";
  */
 export function FormFieldInfoTooltip({
     class: widgetClassName,
-    tooltipType,
+    tooltipMode,
     content: formFieldContent,
     widgetContent,
     tooltipText,
@@ -37,11 +37,11 @@ export function FormFieldInfoTooltip({
     // Define reference for the widget element
     const formFieldContainerRef = useRef(null);
 
-    // Check type: Form field
-    const isFormFieldType = "formField" === tooltipType;
+    // Check mode: Form field
+    const isFormFieldMode = "formField" === tooltipMode;
 
-    // Check type: Widget or Standalone
-    const isWidgetOrStandaloneType = "widget" === tooltipType || "standalone" === tooltipType;
+    // Check mode: Widget or Standalone
+    const isWidgetOrStandaloneMode = "widget" === tooltipMode || "standalone" === tooltipMode;
 
     // Define noop for
     const noop = () => {};
@@ -51,7 +51,7 @@ export function FormFieldInfoTooltip({
     tooltipContainer.className = "tooltip-container";
 
     // Log issue with nested conditional visibility
-    if (isFormFieldType && formFieldContent.length && formFieldContent[0].props.hasOwnProperty("visible")) {
+    if (isFormFieldMode && formFieldContent.length && formFieldContent[0].props.hasOwnProperty("visible")) {
         console.error(
             `${name}: Widget cannot properly handle nested widgets with conditional visibility. Apply conditional visibility to the tooltip widget itself.`
         );
@@ -62,7 +62,7 @@ export function FormFieldInfoTooltip({
         let controlLabel;
 
         // Form field: when the widget element is rendered
-        if (isFormFieldType && formFieldContainerRef.current) {
+        if (isFormFieldMode && formFieldContainerRef.current) {
             // Query the form field label element
             controlLabel = formFieldContainerRef.current.querySelector(".control-label");
 
@@ -102,12 +102,12 @@ export function FormFieldInfoTooltip({
 
     return (
         <Fragment>
-            {isFormFieldType && (
+            {isFormFieldMode && (
                 <div
                     ref={formFieldContainerRef}
                     className={classNames(
-                        { "form-field-with-info-tooltip": isFormFieldType },
-                        isFormFieldType ? `tooltip-location-${tooltipLocation}` : null
+                        { "form-field-with-info-tooltip": isFormFieldMode },
+                        isFormFieldMode ? `tooltip-location-${tooltipLocation}` : null
                     )}
                 >
                     {formFieldContent}
@@ -124,7 +124,7 @@ export function FormFieldInfoTooltip({
                     )}
                 </div>
             )}
-            {isWidgetOrStandaloneType && (
+            {isWidgetOrStandaloneMode && (
                 <Tooltip
                     className={widgetClassName}
                     tooltipClassName={tooltipClassName}

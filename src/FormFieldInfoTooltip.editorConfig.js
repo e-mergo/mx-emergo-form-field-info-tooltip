@@ -9,8 +9,8 @@ const typeWidgetKeys = ["widgetContent"];
 // Define standalone specific properties
 const typeStandaloneKeys = [];
 
-// Define conditional properties for tooltip types
-const keysToHideByTooltipType = {
+// Define conditional properties for tooltip modes
+const keysToHideByTooltipMode = {
     formField: [...typeWidgetKeys, ...typeStandaloneKeys],
     widget: [...typeFormFieldKeys, ...typeStandaloneKeys, "tooltipIcon"],
     standalone: [...typeFormFieldKeys, ...typeWidgetKeys]
@@ -26,7 +26,7 @@ const keysToHideByTooltipType = {
  */
 export function getProperties(values, defaultProperties, target) {
     // Conditional event property
-    hidePropertiesIn(defaultProperties, values, [...keysToHideByTooltipType[values.tooltipType]]);
+    hidePropertiesIn(defaultProperties, values, [...keysToHideByTooltipMode[values.tooltipMode]]);
 
     return defaultProperties;
 }
@@ -39,7 +39,7 @@ export function getProperties(values, defaultProperties, target) {
  * @return {String} Custom caption
  */
 export function getCustomCaption(values, platform) {
-    switch (values.tooltipType) {
+    switch (values.tooltipMode) {
         case "widget":
             return "Widget Info Tooltip";
         case "standalone":

@@ -15,8 +15,8 @@
     <icon />
     <properties>
         <propertyGroup caption="General">
-            <property key="tooltipType" type="enumeration" defaultValue="formField">
-                <caption>Type</caption>
+            <property key="tooltipMode" type="enumeration" defaultValue="formField">
+                <caption>Mode</caption>
                 <description />
                 <enumerationValues>
                     <enumerationValue key="formField">Form field</enumerationValue>
