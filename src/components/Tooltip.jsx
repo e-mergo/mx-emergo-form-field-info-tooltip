@@ -119,7 +119,7 @@ export function Tooltip({ className, text, tooltipClassName, icon, position, int
                         className={classNames(
                             "ffit-tooltip-popup",
                             /* For backcompat */ "form-field-info-tooltip",
-                            tooltipClassName.value
+                            tooltipClassName?.value
                         )}
                         style={floatingStyles}
                         {...getFloatingProps()}
