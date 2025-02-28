@@ -40,8 +40,11 @@ export function Ffit({
     // Check mode: Form field
     const isFormFieldMode = "formField" === tooltipMode;
 
-    // Check mode: Widget or Standalone
-    const isWidgetOrStandaloneMode = "widget" === tooltipMode || "standalone" === tooltipMode;
+    // Check mode: Widget
+    const isWidgetMode = "widget" === tooltipMode;
+
+    // Check mode: Standalone
+    const isStandaloneMode = "standalone" === tooltipMode;
 
     // Define noop for
     const noop = () => {};
@@ -106,14 +109,14 @@ export function Ffit({
                 <div
                     ref={formFieldContainerRef}
                     className={classNames(
-                        { "form-field-with-info-tooltip": isFormFieldMode },
+                        "form-field-with-info-tooltip",
                         isFormFieldMode ? `tooltip-location-${tooltipLocation}` : null
                     )}
                 >
                     {formFieldContent}
                     {createPortal(
                         <Tooltip
-                            className={widgetClassName}
+                            className={classNames(widgetClassName, "ffit-form-field-info-tooltip")}
                             tooltipClassName={tooltipClassName}
                             text={tooltipText}
                             icon={tooltipIcon}
@@ -124,9 +127,12 @@ export function Ffit({
                     )}
                 </div>
             )}
-            {isWidgetOrStandaloneMode && (
+            {(isWidgetMode || isStandaloneMode) && (
                 <Tooltip
-                    className={widgetClassName}
+                    className={classNames(widgetClassName, {
+                        "ffit-widget-info-tooltip": isWidgetMode,
+                        "ffit-standalone-info-tooltip": isStandaloneMode
+                    })}
                     tooltipClassName={tooltipClassName}
                     text={tooltipText}
                     icon={tooltipIcon}

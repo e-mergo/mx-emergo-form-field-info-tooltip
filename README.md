@@ -57,12 +57,13 @@ Follow these steps to add the widget to your Mendix project:
 The default tooltip icon and the tooltip itself can be styled through CSS in your project's theme styles.
 
 -   'form-field-with-info-tooltip' is the class name of the widget element that contains the embedded form field.
--   'ffit-widget-info-tooltip' is the class name of the widget element that contains the embedded widget.
--   'ffit-standalone-info-tooltip' is the class name of the widget element that contains just the tooltip icon.
--   'tooltip-container' is the class name of the element that contains the tooltip trigger element (button).
+-   'tooltip-container' is the class name of the element that contains the tooltip trigger element in Form field mode (button).
+-   'ffit-form-field-info-tooltip' is the class name of the tooltip trigger element in Form field mode (button).
+-   'ffit-widget-info-tooltip' is the class name of the tooltip trigger element in Widget mode (widget).
+-   'ffit-standalone-info-tooltip' is the class name of the tooltip trigger element in Standalone mode (button).
 -   'tooltip-default-icon' is the class name of the tooltip trigger element when no tooltip icon is configured.
 -   'tooltip-custom-icon' is the class name of the tooltip trigger element when a tooltip icon is configured.
--   'form-field-info-tooltip' is the class name of the tooltip element that contains the tooltip text.
+-   'ffit-tooltip-popup' is the class name of the tooltip element that contains the tooltip text.
 
 ## FAQ
 

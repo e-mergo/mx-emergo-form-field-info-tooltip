@@ -96,7 +96,7 @@ export function Tooltip({ className, text, tooltipClassName, icon, position, int
             {hasTarget && (
                 <div
                     ref={refs.setReference}
-                    className={classNames("ffit-widget-info-tooltip", className)}
+                    className={classNames(className, `tooltip-on-${interaction}`)}
                     tabIndex={enableFocus ? 0 : -1}
                     {...getReferenceProps()}
                 >
@@ -106,7 +106,7 @@ export function Tooltip({ className, text, tooltipClassName, icon, position, int
             {!hasTarget && (
                 <TooltipButton
                     ref={refs.setReference}
-                    className={classNames("ffit-standalone-info-tooltip", `tooltip-on-${interaction}`, className)}
+                    className={classNames(className, `tooltip-on-${interaction}`)}
                     icon={icon}
                     tabIndex={enableFocus ? 0 : -1}
                     {...getReferenceProps()}
