@@ -16,7 +16,7 @@ Below is a detailed description of the available features of this widget.
 
 ### Mode
 
-Select the variation of the information tooltip: in a form field, using any other widget, or standalone just by itself. By default, the widget uses 'Form field' to insert a tooltip icon in a form field. Select 'Widget' to apply the tooltip to any embedded widget. Select 'Standalone' to display just the selected icon with a tooltip. The variations allow for a harmonized tooltip experience across different parts of an app.
+Select the variation of the information tooltip: in a form field, using any type of widget, or a standalone icon. By default, the widget uses 'Form field' to insert a tooltip icon in a form field. Select 'Widget' to apply the tooltip to any embedded widget. Select 'Standalone' to display just the selected icon with a tooltip. The variations allow for a harmonized tooltip experience across different parts of an app.
 
 ### Tooltip
 
@@ -75,6 +75,11 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.1.0 - 20250228
+
+-   Added the Mode attribute to expand the tooltip usage beyond form fields: use any type of widget or a standalone icon.
+-   Changed the default icon to use the Atlas Core lined icon question-circle.
 
 #### 1.0.4 - 20231027
 
