@@ -1,7 +1,7 @@
 {
     "name": "form-field-info-tooltip",
     "widgetName": "FormFieldInfoTooltip",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "Mendix custom widget for adding a contextual information tooltip to a form field.",
     "author": "E-mergo, Laurens Offereins",
     "engines": {

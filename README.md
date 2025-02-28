@@ -77,6 +77,10 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.1.1 - 20250228
+
+-   Fixed class name assignment for various modes.
+
 #### 1.1.0 - 20250228
 
 -   Added the Mode attribute to expand the tooltip usage beyond form fields: use any type of widget or a standalone icon.
