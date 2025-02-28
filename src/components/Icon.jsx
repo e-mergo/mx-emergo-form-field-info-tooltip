@@ -23,7 +23,7 @@ export function Icon({ icon }) {
                 ></i>
             )}
             {icon && icon.value.iconUrl && <img aria-hidden src={icon.value.iconUrl} />}
-            {icon ? null : <i aria-hidden className="mx-icon-filled mx-icon-question-circle"></i>}
+            {icon ? null : <i aria-hidden className="mx-icon-lined mx-icon-question-circle"></i>}
         </Fragment>
     );
 }
