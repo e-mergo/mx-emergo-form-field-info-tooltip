@@ -1,8 +1,8 @@
 # Form Field Info Tooltip
 
-Mendix custom widget for adding a contextual information tooltip to a form field
+Mendix custom widget for adding a contextual information tooltip to a form field, a widget or just by itself
 
-**Form Field Info Tooltip** is a Mendix widget created by [E-mergo](https://www.e-mergo.nl). Use this widget to add contextual information to your form fields in Mendix. The widget displays an information icon nested inside the form field adjacent to the label or input field, creating a clear relation between form field and contextual information. When interacting with the icon, a simple tooltip shows the contextual information.
+**Form Field Info Tooltip** is a Mendix widget created by [E-mergo](https://www.e-mergo.nl). Use this widget to add contextual information to your form fields, widgets or just an icon in Mendix. When applied to a form field, the widget displays an information icon nested inside the form field adjacent to the label or input field, creating a clear relation between form field and contextual information. When interacting with the icon, a simple tooltip shows the contextual information.
 
 This widget is [hosted on GitHub](https://github.com/e-mergo/mx-emergo-form-field-info-tooltip). You can report bugs and discuss features on the [issues page](https://github.com/e-mergo/mx-emergo-form-field-info-tooltip/issues).
 
@@ -14,19 +14,27 @@ This widget is created free of charge for Mendix developers, personal or profess
 
 Below is a detailed description of the available features of this widget.
 
-### Tooltip text
+### Mode
+
+Select the variation of the information tooltip: in a form field, using any other widget, or standalone just by itself. By default, the widget uses 'Form field' to insert a tooltip icon in a form field. Select 'Widget' to apply the tooltip to any embedded widget. Select 'Standalone' to display just the selected icon with a tooltip. The variations allow for a harmonized tooltip experience across different parts of an app.
+
+### Tooltip
 
 Set the tooltip text with plain text or use parameters to create dynamic tooltip text. This is a required attribute of the widget.
 
-### Tooltip icon
+### Tooltip class
+
+Set an expression for the dynamic class name for the tooltip popup.
+
+### Icon
 
 Set the tooltip icon with a icon or image from the icon library.
 
-### Tooltip location
+### Placement
 
-Set the location of the tooltip icon in the form field: before the label, after the label or before the input.
+Set the placement of the tooltip icon in the form field: before the label, after the label or before the input.
 
-### Tooltip position
+### Position
 
 Set the position of the tooltip related to the tooltip icon: top, left, bottom, or right.
 
@@ -49,6 +57,8 @@ Follow these steps to add the widget to your Mendix project:
 The default tooltip icon and the tooltip itself can be styled through CSS in your project's theme styles.
 
 -   'form-field-with-info-tooltip' is the class name of the widget element that contains the embedded form field.
+-   'ffit-widget-info-tooltip' is the class name of the widget element that contains the embedded widget.
+-   'ffit-standalone-info-tooltip' is the class name of the widget element that contains just the tooltip icon.
 -   'tooltip-container' is the class name of the element that contains the tooltip trigger element (button).
 -   'tooltip-default-icon' is the class name of the tooltip trigger element when no tooltip icon is configured.
 -   'tooltip-custom-icon' is the class name of the tooltip trigger element when a tooltip icon is configured.
