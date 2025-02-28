@@ -1,19 +1,19 @@
 import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
 
-// Define form field specific properties
-const typeFormFieldKeys = ["tooltipLocation", "content"];
+// Define formField exclusive properties
+const modeFormFieldKeys = ["tooltipLocation", "content"];
 
-// Define widget specific properties
-const typeWidgetKeys = ["widgetContent"];
+// Define widget exclusive properties
+const modeWidgetKeys = ["widgetContent"];
 
-// Define standalone specific properties
-const typeStandaloneKeys = [];
+// Define standalone exclusive properties
+const modeStandaloneKeys = [];
 
-// Define conditional properties for tooltip modes
-const keysToHideByTooltipMode = {
-    formField: [...typeWidgetKeys, ...typeStandaloneKeys],
-    widget: [...typeFormFieldKeys, ...typeStandaloneKeys, "tooltipIcon"],
-    standalone: [...typeFormFieldKeys, ...typeWidgetKeys]
+// Define conditional properties for modes
+const keysToHideByMode = {
+    formField: [...modeWidgetKeys, ...modeStandaloneKeys],
+    widget: [...modeFormFieldKeys, ...modeStandaloneKeys, "tooltipIcon"],
+    standalone: [...modeFormFieldKeys, ...modeWidgetKeys]
 };
 
 /**
@@ -26,7 +26,7 @@ const keysToHideByTooltipMode = {
  */
 export function getProperties(values, defaultProperties, target) {
     // Conditional event property
-    hidePropertiesIn(defaultProperties, values, [...keysToHideByTooltipMode[values.tooltipMode]]);
+    hidePropertiesIn(defaultProperties, values, [...keysToHideByMode[values.tooltipMode]]);
 
     return defaultProperties;
 }
