@@ -14,7 +14,7 @@ coverage
 **/results
 mendixProject
 **/e2e/diffs
-**/screenshot
+**/screenshots
 **/screenshot-results
 **/tests/testProject
 **/artifacts
