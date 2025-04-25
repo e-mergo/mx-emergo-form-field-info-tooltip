@@ -14,6 +14,7 @@ import "../ui/FormFieldInfoTooltip.scss";
  * @param {Array}  options.content          Form field child elements.
  * @param {Array}  options.widgetContent    Widget child elements.
  * @param {String} options.tooltipText      Tooltip text attribute.
+ * @param {String} options.tooltipContent   Tooltip content elements.
  * @param {String} options.tooltipClassName Tooltip class attribute.
  * @param {Object} options.tooltipIcon      Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String} options.tooltipLocation  Tooltip location attribute.
@@ -27,6 +28,7 @@ export function Ffit({
     content: formFieldContent,
     widgetContent,
     tooltipText,
+    tooltipContent,
     tooltipClassName,
     tooltipIcon,
     tooltipLocation,
@@ -119,6 +121,7 @@ export function Ffit({
                             className={classNames(widgetClassName, "ffit-form-field-info-tooltip")}
                             tooltipClassName={tooltipClassName}
                             text={tooltipText}
+                            content={tooltipContent}
                             icon={tooltipIcon}
                             position={tooltipPosition}
                             interaction={openOn}
@@ -135,6 +138,7 @@ export function Ffit({
                     })}
                     tooltipClassName={tooltipClassName}
                     text={tooltipText}
+                    content={tooltipContent}
                     icon={tooltipIcon}
                     position={tooltipPosition}
                     interaction={openOn}

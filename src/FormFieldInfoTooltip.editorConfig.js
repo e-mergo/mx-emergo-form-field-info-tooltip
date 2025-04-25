@@ -28,6 +28,13 @@ export function getProperties(values, defaultProperties, target) {
     // Conditional event property
     hidePropertiesIn(defaultProperties, values, [...keysToHideByMode[values.tooltipMode]]);
 
+    // Display type
+    hidePropertiesIn(
+        defaultProperties,
+        values,
+        ["tooltipText", "tooltipContent"].filter(i => i !== values.tooltipDisplayType)
+    );
+
     return defaultProperties;
 }
 

@@ -25,13 +25,14 @@ import { TooltipButton } from "./TooltipButton";
  *
  * @param {String} options.className        Mendix widget class name.
  * @param {String} options.text             Tooltip text attribute.
+ * @param {String} options.content          Tooltip content elements.
  * @param {String} options.tooltipClassName Tooltip class attribute.
  * @param {Object} options.icon             Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
  * @param {String} options.position         Tooltip position attribute.
  * @param {String} options.interaction      Tooltip interaction attribute.
  * @param {Array}  options.target           Optional. Tooltip target.
  */
-export function Tooltip({ className, text, tooltipClassName, icon, position, interaction, target }) {
+export function Tooltip({ className, text, content, tooltipClassName, icon, position, interaction, target }) {
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -124,7 +125,14 @@ export function Tooltip({ className, text, tooltipClassName, icon, position, int
                         style={floatingStyles}
                         {...getFloatingProps()}
                     >
-                        <div className="tooltip-popup-content">{text.value}</div>
+                        <div
+                            className={classNames("tooltip-popup-content", {
+                                "text-content": !content,
+                                "widget-content": !!content
+                            })}
+                        >
+                            {content || text.value}
+                        </div>
                         <FloatingArrow className="tooltip-popup-arrow" ref={arrowRef} context={context}></FloatingArrow>
                     </div>
                 )}

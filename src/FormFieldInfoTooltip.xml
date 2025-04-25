@@ -24,8 +24,20 @@
                     <enumerationValue key="standalone">Standalone</enumerationValue>
                 </enumerationValues>
             </property>
+            <property key="tooltipDisplayType" type="enumeration" defaultValue="tooltipText">
+                <caption>Display type</caption>
+                <description />
+                <enumerationValues>
+                    <enumerationValue key="tooltipText">Text</enumerationValue>
+                    <enumerationValue key="tooltipContent">Content</enumerationValue>
+                </enumerationValues>
+            </property>
             <property key="tooltipText" type="textTemplate" multiline="true">
                 <caption>Tooltip</caption>
+                <description />
+            </property>
+            <property key="tooltipContent" type="widgets">
+                <caption>Tooltip content</caption>
                 <description />
             </property>
             <property key="tooltipClassName" type="expression" required="false">
