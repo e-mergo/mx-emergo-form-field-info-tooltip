@@ -12,6 +12,7 @@
     <name>Form Field Info Tooltip</name>
     <description>Mendix custom widget for adding a contextual information tooltip to a form field.</description>
     <studioProCategory>Display</studioProCategory>
+    <helpUrl>https://github.com/e-mergo/mx-emergo-form-field-info-tooltip/blob/main/README.md</helpUrl>
     <icon />
     <properties>
         <propertyGroup caption="General">
