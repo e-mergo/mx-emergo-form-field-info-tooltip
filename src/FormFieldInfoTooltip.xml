@@ -33,11 +33,11 @@
                     <enumerationValue key="tooltipContent">Content</enumerationValue>
                 </enumerationValues>
             </property>
-            <property key="tooltipText" type="textTemplate" multiline="true">
+            <property key="tooltipText" type="textTemplate" multiline="true" required="false">
                 <caption>Tooltip</caption>
                 <description />
             </property>
-            <property key="tooltipContent" type="widgets">
+            <property key="tooltipContent" type="widgets" required="false">
                 <caption>Tooltip content</caption>
                 <description />
             </property>

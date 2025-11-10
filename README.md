@@ -20,7 +20,7 @@ Select the variation of the information tooltip: in a form field, using any type
 
 ### Tooltip
 
-Set the tooltip text with plain text or use parameters to create dynamic tooltip text. This is a required attribute of the widget.
+Set the tooltip text with plain text or use parameters to create dynamic tooltip text.
 
 ### Tooltip class
 
