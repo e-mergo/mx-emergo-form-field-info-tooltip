@@ -18,9 +18,17 @@ Below is a detailed description of the available features of this widget.
 
 Select the variation of the information tooltip: in a form field, using any type of widget, or a standalone icon. By default, the widget uses 'Form field' to insert a tooltip icon in a form field. Select 'Widget' to apply the tooltip to any embedded widget. Select 'Standalone' to display just the selected icon with a tooltip. The variations allow for a harmonized tooltip experience across different parts of an app.
 
+### Display type
+
+Choose between text or content to populate the tooltip contents.
+
 ### Tooltip
 
 Set the tooltip text with plain text or use parameters to create dynamic tooltip text.
+
+### Tooltip content
+
+Set the tooltip content using widgets.
 
 ### Tooltip class
 
@@ -41,6 +49,10 @@ Set the position of the tooltip related to the tooltip icon: top, left, bottom, 
 ### Interaction
 
 Set the interaction method of the tooltip: show the tooltip on click, hover or on hover and focus.
+
+### Interactive
+
+Set whether to enable interactivity inside the tooltip when opened.
 
 ## Usage
 
@@ -77,13 +89,19 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.2.0 - 20251110
+
+-   Added the _Tooltip content_ attribute to use widgets for the tooltip contents.
+-   Added the _Display type_ attribute to choose between text or widgets to populate the tooltip contents.
+-   Added the _Interactive_ attribute to enable interactivity inside the tooltip when opened.
+
 #### 1.1.1 - 20250228
 
 -   Fixed class name assignment for various modes.
 
 #### 1.1.0 - 20250228
 
--   Added the Mode attribute to expand the tooltip usage beyond form fields: use any type of widget or a standalone icon.
+-   Added the _Mode_ attribute to expand the tooltip usage beyond form fields: use any type of widget or a standalone icon as trigger element.
 -   Changed the default icon to use the Atlas Core lined icon question-circle.
 
 #### 1.0.4 - 20231027
