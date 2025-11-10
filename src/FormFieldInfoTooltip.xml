@@ -81,6 +81,11 @@
                     <enumerationValue key="hoverFocus">Hover, focus</enumerationValue>
                 </enumerationValues>
             </property>
+            <property key="enableInteraction" type="expression" defaultValue="true" required="false">
+                <caption>Interactive</caption>
+                <description>When opened, enable interactivity inside the tooltip.</description>
+                <returnType type="Boolean" />
+            </property>
             <property key="content" type="widgets" required="true">
                 <caption>Insert form field</caption>
                 <description />

@@ -23,16 +23,27 @@ import { TooltipButton } from "./TooltipButton";
  *
  * @since 1.0.0
  *
- * @param {String} options.className        Mendix widget class name.
- * @param {String} options.text             Tooltip text attribute.
- * @param {String} options.content          Tooltip content elements.
- * @param {String} options.tooltipClassName Tooltip class attribute.
- * @param {Object} options.icon             Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String} options.position         Tooltip position attribute.
- * @param {String} options.interaction      Tooltip interaction attribute.
- * @param {Array}  options.target           Optional. Tooltip target.
+ * @param {String} options.className         Mendix widget class name.
+ * @param {String} options.text              Tooltip text attribute.
+ * @param {String} options.content           Tooltip content elements.
+ * @param {String} options.tooltipClassName  Tooltip class attribute.
+ * @param {Object} options.icon              Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} options.position          Tooltip position attribute.
+ * @param {String} options.interaction       Tooltip interaction attribute.
+ * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
+ * @param {Array}  options.target            Optional. Tooltip target.
  */
-export function Tooltip({ className, text, content, tooltipClassName, icon, position, interaction, target }) {
+export function Tooltip({
+    className,
+    text,
+    content,
+    tooltipClassName,
+    icon,
+    position,
+    interaction,
+    enableInteraction,
+    target
+}) {
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
 
@@ -120,7 +131,10 @@ export function Tooltip({ className, text, content, tooltipClassName, icon, posi
                         className={classNames(
                             "ffit-tooltip-popup",
                             /* For backcompat */ "form-field-info-tooltip",
-                            tooltipClassName?.value
+                            tooltipClassName?.value,
+                            {
+                                "interaction-enabled": enableInteraction?.value
+                            }
                         )}
                         style={floatingStyles}
                         {...getFloatingProps()}
