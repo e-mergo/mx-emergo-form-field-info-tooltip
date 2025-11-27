@@ -32,6 +32,7 @@ import { TooltipButton } from "./TooltipButton";
  * @param {String} options.interaction       Tooltip interaction attribute.
  * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
  * @param {Array}  options.target            Optional. Tooltip target.
+ * @param {Object} options.style             Mendix widget element styles.
  */
 export function Tooltip({
     className,
@@ -42,7 +43,8 @@ export function Tooltip({
     position,
     interaction,
     enableInteraction,
-    target
+    target,
+    style
 }) {
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
@@ -110,6 +112,7 @@ export function Tooltip({
                     ref={refs.setReference}
                     className={classNames(className, `tooltip-on-${interaction}`)}
                     tabIndex={enableFocus ? 0 : -1}
+                    style={style}
                     {...getReferenceProps()}
                 >
                     {target}
@@ -121,6 +124,7 @@ export function Tooltip({
                     className={classNames(className, `tooltip-on-${interaction}`)}
                     icon={icon}
                     tabIndex={enableFocus ? 0 : -1}
+                    style={style}
                     {...getReferenceProps()}
                 />
             )}

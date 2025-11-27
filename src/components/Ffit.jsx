@@ -22,6 +22,7 @@ import "../ui/FormFieldInfoTooltip.scss";
  * @param {String} options.openOn            Tooltip interaction attribute.
  * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
  * @param {String} options.name              Mendix widget element name.
+ * @param {Object} options.style             Mendix widget element styles.
  */
 export function Ffit({
     widgetClassName,
@@ -36,7 +37,8 @@ export function Ffit({
     tooltipPosition,
     openOn,
     enableInteraction,
-    name
+    name,
+    style
 }) {
     // Define reference for the widget element
     const formFieldContainerRef = useRef(null);
@@ -128,6 +130,7 @@ export function Ffit({
                             position={tooltipPosition}
                             interaction={openOn}
                             enableInteraction={enableInteraction}
+                            style={style}
                         />,
                         tooltipContainer
                     )}
@@ -147,6 +150,7 @@ export function Ffit({
                     interaction={openOn}
                     enableInteraction={enableInteraction}
                     target={widgetContent}
+                    style={style}
                 />
             )}
         </Fragment>
