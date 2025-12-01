@@ -24,11 +24,11 @@
         "release": "pluggable-widgets-tools release:web"
     },
     "devDependencies": {
-        "@mendix/pluggable-widgets-tools": "^10.16.0"
+        "@mendix/pluggable-widgets-tools": "^11.3.0"
     },
     "dependencies": {
-        "@floating-ui/react": "^0.27.0",
-        "classnames": "^2.3.2"
+        "@floating-ui/react": "^0.27.16",
+        "classnames": "^2.5.1"
     },
     "resolutions": {
         "react": "18.2.0",
