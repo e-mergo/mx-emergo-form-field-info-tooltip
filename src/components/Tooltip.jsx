@@ -16,6 +16,7 @@ import {
     FloatingArrow
 } from "@floating-ui/react";
 import classNames from "classnames";
+import { useFocusWithin } from "./useFocusWithin";
 import { TooltipButton } from "./TooltipButton";
 
 /**
@@ -23,16 +24,17 @@ import { TooltipButton } from "./TooltipButton";
  *
  * @since 1.0.0
  *
- * @param {String} options.className         Mendix widget class name.
- * @param {String} options.text              Tooltip text attribute.
- * @param {String} options.content           Tooltip content elements.
- * @param {String} options.tooltipClassName  Tooltip class attribute.
- * @param {Object} options.icon              Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String} options.position          Tooltip position attribute.
- * @param {String} options.interaction       Tooltip interaction attribute.
- * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
- * @param {Array}  options.target            Optional. Tooltip target.
- * @param {Object} options.style             Mendix widget element styles.
+ * @param {String}  options.className         Mendix widget class name.
+ * @param {String}  options.text              Tooltip text attribute.
+ * @param {String}  options.content           Tooltip content elements.
+ * @param {String}  options.tooltipClassName  Tooltip class attribute.
+ * @param {Object}  options.icon              Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String}  options.position          Tooltip position attribute.
+ * @param {String}  options.interaction       Tooltip interaction attribute.
+ * @param {Boolean} options.focusWithin       Tooltip focus within attribute.
+ * @param {Object}  options.enableInteraction Tooltip enable interaction attribute.
+ * @param {Array}   options.target            Optional. Tooltip target.
+ * @param {Object}  options.style             Mendix widget element styles.
  */
 export function Tooltip({
     className,
@@ -42,6 +44,7 @@ export function Tooltip({
     icon,
     position,
     interaction,
+    focusWithin: focusWithinAttr,
     enableInteraction,
     target,
     style
@@ -49,14 +52,17 @@ export function Tooltip({
     // Define state for showing/hiding the tooltip
     const [showTooltip, setShowTooltip] = useState(false);
 
-    // Define whether focus is enabled
-    const enableFocus = "hoverFocus" === interaction;
-
     // Define reference for the tooltip arrow element
     const arrowRef = useRef(null);
 
     // Define whether a target is provided
     const hasTarget = target && !!target.length;
+
+    // Define whether focus is enabled
+    const enableFocus = "hoverFocus" === interaction && (!hasTarget || !focusWithinAttr?.value);
+
+    // Define whether focus within is enabled
+    const enableFocusWithin = "hoverFocus" === interaction && hasTarget && focusWithinAttr?.value;
 
     // Configuration of Floating UI
     const {
@@ -99,11 +105,12 @@ export function Tooltip({
 
     // Define interactions
     const focus = useFocus(context, { enabled: enableFocus });
+    const focusWithin = useFocusWithin(context, { enabled: enableFocusWithin });
     const hover = useHover(context, { enabled: "hover" === interaction || "hoverFocus" === interaction });
     const click = useClick(context, { enabled: "click" === interaction });
     const dismiss = useDismiss(context);
     const role = useRole(context, { role: "tooltip" });
-    const { getReferenceProps, getFloatingProps } = useInteractions([focus, hover, click, dismiss, role]);
+    const { getReferenceProps, getFloatingProps } = useInteractions([focus, focusWithin, hover, click, dismiss, role]);
 
     return (
         <Fragment>

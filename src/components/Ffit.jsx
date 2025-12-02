@@ -20,6 +20,7 @@ import "../ui/FormFieldInfoTooltip.scss";
  * @param {String} options.tooltipLocation   Tooltip location attribute.
  * @param {String} options.tooltipPosition   Tooltip position attribute.
  * @param {String} options.openOn            Tooltip interaction attribute.
+ * @param {Object} options.focusWithin       Tooltip focus within attribute.
  * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
  * @param {String} options.name              Mendix widget element name.
  * @param {Object} options.style             Mendix widget element styles.
@@ -36,6 +37,7 @@ export function Ffit({
     tooltipLocation,
     tooltipPosition,
     openOn,
+    focusWithin,
     enableInteraction,
     name,
     style
@@ -52,7 +54,7 @@ export function Ffit({
     // Check mode: Standalone
     const isStandaloneMode = "standalone" === tooltipMode;
 
-    // Define noop for
+    // Define noop for consistent return
     const noop = () => {};
 
     // Setup container element
@@ -129,6 +131,7 @@ export function Ffit({
                             icon={tooltipIcon}
                             position={tooltipPosition}
                             interaction={openOn}
+                            focusWithin={focusWithin}
                             enableInteraction={enableInteraction}
                             style={style}
                         />,
@@ -148,6 +151,7 @@ export function Ffit({
                     icon={tooltipIcon}
                     position={tooltipPosition}
                     interaction={openOn}
+                    focusWithin={focusWithin}
                     enableInteraction={enableInteraction}
                     target={widgetContent}
                     style={style}

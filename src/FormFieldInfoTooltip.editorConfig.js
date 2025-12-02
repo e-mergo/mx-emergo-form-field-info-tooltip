@@ -4,7 +4,7 @@ import { hidePropertiesIn } from "@mendix/pluggable-widgets-tools";
 const modeFormFieldKeys = ["tooltipLocation", "content"];
 
 // Define widget exclusive properties
-const modeWidgetKeys = ["widgetContent"];
+const modeWidgetKeys = ["widgetContent", "focusWithin"];
 
 // Define standalone exclusive properties
 const modeStandaloneKeys = [];
@@ -34,6 +34,11 @@ export function getProperties(values, defaultProperties, target) {
         values,
         ["tooltipText", "tooltipContent"].filter(i => i !== values.tooltipDisplayType)
     );
+
+    // Display focusWithin only for hoverFocus interaction
+    if ("hoverFocus" !== values.openOn) {
+        hidePropertiesIn(defaultProperties, values, ["focusWithin"]);
+    }
 
     return defaultProperties;
 }

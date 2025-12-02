@@ -28,7 +28,8 @@
     },
     "dependencies": {
         "@floating-ui/react": "^0.27.16",
-        "classnames": "^2.5.1"
+        "classnames": "^2.5.1",
+        "react-aria": "^3.44.0"
     },
     "resolutions": {
         "react": "18.2.0",
