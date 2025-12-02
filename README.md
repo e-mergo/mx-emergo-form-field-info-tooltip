@@ -30,6 +30,10 @@ Set the tooltip text with plain text or use parameters to create dynamic tooltip
 
 Set the tooltip content using widgets.
 
+### Content is text
+
+Set whether the tooltip content using widgets contains only text. This helps set the correct tooltip styling.
+
 ### Tooltip class
 
 Set an expression for the dynamic class name for the tooltip popup.
@@ -49,6 +53,10 @@ Set the position of the tooltip related to the tooltip icon: top, left, bottom, 
 ### Interaction
 
 Set the interaction method of the tooltip: show the tooltip on click, hover or on hover and focus.
+
+### Focus within
+
+Set whether the focus interaction of the tooltip is only triggered by embedded widgets.
 
 ### Interactive
 
@@ -88,6 +96,12 @@ E-mergo provides paid support through standard support contracts. For other scen
 Requests for additional features can be posted in the widget's GitHub repository. Depending on your own code samples and the availability of E-mergo developers your request may be considered and included.
 
 ## Changelog
+
+#### 1.3.0 - 20251202
+
+-   Added the _Focus within_ attribute to trigger the focus interaction only by embedded widgets. Enable this when using buttons or input fields.
+-   Added the _Content is text_ attribute to set tooltip text styling when using widgets for tooltip content.
+-   Support custom styles from the widget style attribute.
 
 #### 1.2.0 - 20251110
 
