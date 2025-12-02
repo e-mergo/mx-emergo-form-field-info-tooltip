@@ -24,22 +24,24 @@ import { TooltipButton } from "./TooltipButton";
  *
  * @since 1.0.0
  *
- * @param {String}  options.className         Mendix widget class name.
- * @param {String}  options.text              Tooltip text attribute.
- * @param {String}  options.content           Tooltip content elements.
- * @param {String}  options.tooltipClassName  Tooltip class attribute.
- * @param {Object}  options.icon              Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String}  options.position          Tooltip position attribute.
- * @param {String}  options.interaction       Tooltip interaction attribute.
- * @param {Boolean} options.focusWithin       Tooltip focus within attribute.
- * @param {Object}  options.enableInteraction Tooltip enable interaction attribute.
- * @param {Array}   options.target            Optional. Tooltip target.
- * @param {Object}  options.style             Mendix widget element styles.
+ * @param {String} options.className         Mendix widget class name.
+ * @param {String} options.text              Tooltip text attribute.
+ * @param {String} options.content           Tooltip content elements.
+ * @param {Object} options.contentIsText     Tooltip content is text attribute.
+ * @param {Object} options.tooltipClassName  Tooltip class attribute.
+ * @param {Object} options.icon              Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} options.position          Tooltip position attribute.
+ * @param {String} options.interaction       Tooltip interaction attribute.
+ * @param {Object} options.focusWithin       Tooltip focus within attribute.
+ * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
+ * @param {Array}  options.target            Optional. Tooltip target.
+ * @param {Object} options.style             Mendix widget element styles.
  */
 export function Tooltip({
     className,
     text,
     content,
+    contentIsText,
     tooltipClassName,
     icon,
     position,
@@ -152,8 +154,8 @@ export function Tooltip({
                     >
                         <div
                             className={classNames("tooltip-popup-content", {
-                                "text-content": !content,
-                                "widget-content": !!content
+                                "text-content": !content || contentIsText?.value,
+                                "widget-content": !!content && !contentIsText?.value
                             })}
                         >
                             {content || text.value}

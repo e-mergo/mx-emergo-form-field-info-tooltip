@@ -41,6 +41,11 @@
                 <caption>Tooltip content</caption>
                 <description />
             </property>
+            <property key="tooltipContentIsText" type="expression" defaultValue="true" required="false">
+                <caption>Content is text only</caption>
+                <description>Enable tooltip text styling.</description>
+                <returnType type="Boolean" />
+            </property>
             <property key="tooltipClassName" type="expression" required="false">
                 <caption>Tooltip class</caption>
                 <description />

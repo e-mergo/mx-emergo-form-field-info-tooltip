@@ -9,21 +9,22 @@ import "../ui/FormFieldInfoTooltip.scss";
  *
  * @since 1.1.1
  *
- * @param {String} options.widgetClassName   Mendix widget class name.
- * @param {Object} options.tooltipMode       Widget mode attribute.
- * @param {Array}  options.content           Form field child elements.
- * @param {Array}  options.widgetContent     Widget child elements.
- * @param {String} options.tooltipText       Tooltip text attribute.
- * @param {String} options.tooltipContent    Tooltip content elements.
- * @param {String} options.tooltipClassName  Tooltip class attribute.
- * @param {Object} options.tooltipIcon       Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
- * @param {String} options.tooltipLocation   Tooltip location attribute.
- * @param {String} options.tooltipPosition   Tooltip position attribute.
- * @param {String} options.openOn            Tooltip interaction attribute.
- * @param {Object} options.focusWithin       Tooltip focus within attribute.
- * @param {Object} options.enableInteraction Tooltip enable interaction attribute.
- * @param {String} options.name              Mendix widget element name.
- * @param {Object} options.style             Mendix widget element styles.
+ * @param {String} options.widgetClassName      Mendix widget class name.
+ * @param {Object} options.tooltipMode          Widget mode attribute.
+ * @param {Array}  options.content              Form field child elements.
+ * @param {Array}  options.widgetContent        Widget child elements.
+ * @param {String} options.tooltipText          Tooltip text attribute.
+ * @param {String} options.tooltipContent       Tooltip content elements.
+ * @param {Object} options.tooltipContentIsText Tooltip content is text attribute.
+ * @param {String} options.tooltipClassName     Tooltip class attribute.
+ * @param {Object} options.tooltipIcon          Tooltip icon attribute. See {@link https://docs.mendix.com/apidocs-mxsdk/apidocs/pluggable-widgets-client-apis/#icon-value}.
+ * @param {String} options.tooltipLocation      Tooltip location attribute.
+ * @param {String} options.tooltipPosition      Tooltip position attribute.
+ * @param {String} options.openOn               Tooltip interaction attribute.
+ * @param {Object} options.focusWithin          Tooltip focus within attribute.
+ * @param {Object} options.enableInteraction    Tooltip enable interaction attribute.
+ * @param {String} options.name                 Mendix widget element name.
+ * @param {Object} options.style                Mendix widget element styles.
  */
 export function Ffit({
     widgetClassName,
@@ -32,6 +33,7 @@ export function Ffit({
     widgetContent,
     tooltipText,
     tooltipContent,
+    tooltipContentIsText,
     tooltipClassName,
     tooltipIcon,
     tooltipLocation,
@@ -128,6 +130,7 @@ export function Ffit({
                             tooltipClassName={tooltipClassName}
                             text={tooltipText}
                             content={tooltipContent}
+                            contentIsText={tooltipContentIsText}
                             icon={tooltipIcon}
                             position={tooltipPosition}
                             interaction={openOn}
@@ -148,6 +151,7 @@ export function Ffit({
                     tooltipClassName={tooltipClassName}
                     text={tooltipText}
                     content={tooltipContent}
+                    contentIsText={tooltipContentIsText}
                     icon={tooltipIcon}
                     position={tooltipPosition}
                     interaction={openOn}

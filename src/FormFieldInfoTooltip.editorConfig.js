@@ -35,7 +35,12 @@ export function getProperties(values, defaultProperties, target) {
         ["tooltipText", "tooltipContent"].filter(i => i !== values.tooltipDisplayType)
     );
 
-    // Display focusWithin only for hoverFocus interaction
+    // Content is text only for tooltip content
+    if ("tooltipContent" !== values.tooltipDisplayType) {
+        hidePropertiesIn(defaultProperties, values, ["tooltipContentIsText"]);
+    }
+
+    // Focus within only for hoverFocus interaction
     if ("hoverFocus" !== values.openOn) {
         hidePropertiesIn(defaultProperties, values, ["focusWithin"]);
     }
