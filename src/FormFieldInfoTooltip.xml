@@ -42,8 +42,8 @@
                 <description />
             </property>
             <property key="tooltipContentIsText" type="expression" defaultValue="true" required="false">
-                <caption>Content is text only</caption>
-                <description>Enable tooltip text styling.</description>
+                <caption>Content is text</caption>
+                <description>Enable tooltip text styling when using widgets for tooltip content.</description>
                 <returnType type="Boolean" />
             </property>
             <property key="tooltipClassName" type="expression" required="false">
@@ -86,10 +86,10 @@
                     <enumerationValue key="hoverFocus">Hover, focus</enumerationValue>
                 </enumerationValues>
             </property>
-            <property key="focusWithin" type="expression" defaultValue="true" required="false">
+            <property key="focusWithin" type="expression" defaultValue="false" required="false">
                 <caption>Focus within</caption>
                 <description
-                >Enable opening the tooltip only when focussing widget content, rather than the widget container. Enable this when using buttons or input fields in the widget content.</description>
+                >Trigger the focus interaction only when focussing embedded widgets. Enable this when using buttons or input fields.</description>
                 <returnType type="Boolean" />
             </property>
             <property key="enableInteraction" type="expression" defaultValue="true" required="false">
