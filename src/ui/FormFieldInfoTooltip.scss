@@ -71,6 +71,12 @@ FORM FIELD INFO TOOLTIP
     pointer-events: none;
     overflow: visible;
 
+    // Hide empty tooltip
+    // Hide using styles because widget-based content cannot reliably be detected in the react component
+    &:has(.tooltip-popup-content:empty) {
+        display: none;
+    }
+
     &:has(.widget-content) {
         padding: 12px;
 

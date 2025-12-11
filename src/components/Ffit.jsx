@@ -113,6 +113,17 @@ export function Ffit({
         return noop;
     });
 
+    // Bail when text tooltip is empty.
+    // Widget-based content cannot reliably be detected for visibility
+    if (!tooltipText?.value && !tooltipContent) {
+        return (
+            <Fragment>
+                {isFormFieldMode && formFieldContent}
+                {isWidgetMode && widgetContent}
+            </Fragment>
+        );
+    }
+
     return (
         <Fragment>
             {isFormFieldMode && (
