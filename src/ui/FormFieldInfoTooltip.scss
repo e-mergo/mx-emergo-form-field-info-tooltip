@@ -31,12 +31,12 @@ FORM FIELD INFO TOOLTIP
 .ffit-widget-info-tooltip {
     display: block;
 
-    &:has(> button) {
-        display: inline-block;
-    }
-
     &:has(> span) {
         display: inline;
+    }
+
+    &:has(> button) {
+        display: inline-block;
     }
 }
 
