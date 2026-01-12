@@ -97,6 +97,11 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.3.1 - 20260112
+
+-   Fixed inserting the tooltip icon in form field labels that use dynamic data.
+-   Changed widget to hide empty tooltips. Empty text-based tooltips are not rendered. Empty widget-based tooltips are hidden using styles, because conditional visibility cannot be detected in widget logic.
+
 #### 1.3.0 - 20251202
 
 -   Added the _Focus within_ attribute to trigger the focus interaction only by embedded widgets. Enable this when using buttons or input fields.
