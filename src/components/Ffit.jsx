@@ -1,5 +1,6 @@
 import { createElement, Fragment, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
+import { useMutationObserver } from "@react-hooks-library/core";
 import { Tooltip } from "./Tooltip";
 import classNames from "classnames";
 import "../ui/FormFieldInfoTooltip.scss";
@@ -56,12 +57,13 @@ export function Ffit({
     // Check mode: Standalone
     const isStandaloneMode = "standalone" === tooltipMode;
 
-    // Define noop for consistent return
-    const noop = () => {};
-
     // Setup container element
     const tooltipContainer = document.createElement("div");
     tooltipContainer.className = "tooltip-container";
+
+    // Setup label wrapper
+    const labelContainer = document.createElement("span");
+    labelContainer.className = "label-content";
 
     // Log issue with nested conditional visibility
     if (isFormFieldMode && formFieldContent.length && formFieldContent[0].props.hasOwnProperty("visible")) {
@@ -70,47 +72,60 @@ export function Ffit({
         );
     }
 
+    /**
+     * Insert the tooltip in the form field element
+     */
+    function insertFormFieldTooltip() {
+        // Bail when not in form field mode
+        if (!isFormFieldMode) return;
+
+        // Query the form field label element
+        const controlLabel = formFieldContainerRef.current?.querySelector(".control-label");
+
+        // Bail when the label element is not found
+        if (!controlLabel) return
+
+        // Wrap the label content
+        labelContainer.innerHTML = controlLabel.innerHTML;
+
+        // Replace label content
+        controlLabel.replaceChildren(labelContainer);
+
+        // Insert container at location
+        switch (tooltipLocation) {
+            case "beforeLabel":
+                controlLabel.prepend(tooltipContainer);
+                break;
+            case "afterLabel":
+            case "beforeInput":
+            default:
+                controlLabel.append(tooltipContainer);
+                break;
+        }
+    }
+
+    // Watch form field container
+    useMutationObserver(formFieldContainerRef, (mutationList) => {
+
+        // Search whether added node is the tooltip container
+        const isContainerAdded = mutationList.reduce((is, mutation) => {
+            return is || tooltipContainer === mutation.addedNodes[0];
+        }, false);
+
+        // Tooltip container addition is observed
+        if (isContainerAdded) return;
+
+        // Add the tooltip container
+        insertFormFieldTooltip();
+    }, {
+        childList: true, // Observe when already inserted
+        characterData: true, // Observe when not inserted
+        subtree: true
+    });
+
     // Act when rendering the element
     useEffect(() => {
-        let controlLabel;
-
-        // Form field: when the widget element is rendered
-        if (isFormFieldMode && formFieldContainerRef.current) {
-            // Query the form field label element
-            controlLabel = formFieldContainerRef.current.querySelector(".control-label");
-
-            // Bail when the label element is not found
-            if (!controlLabel) {
-                return noop;
-            }
-
-            // Wrap the label content
-            const labelContainer = document.createElement("span");
-            labelContainer.className = "label-content";
-            labelContainer.innerHTML = controlLabel.innerHTML;
-
-            // Replace label content
-            controlLabel.replaceChildren(labelContainer);
-
-            // Insert container at location
-            switch (tooltipLocation) {
-                case "beforeLabel":
-                    controlLabel.prepend(tooltipContainer);
-                    break;
-                case "afterLabel":
-                case "beforeInput":
-                default:
-                    controlLabel.append(tooltipContainer);
-                    break;
-            }
-
-            return () => {
-                // Remove container from location, unwrap label
-                controlLabel.replaceChildren(labelContainer.innerHTML);
-            };
-        }
-
-        return noop;
+        insertFormFieldTooltip();
     });
 
     // Bail when text tooltip is empty.
@@ -131,7 +146,7 @@ export function Ffit({
                     ref={formFieldContainerRef}
                     className={classNames(
                         "form-field-with-info-tooltip",
-                        isFormFieldMode ? `tooltip-location-${tooltipLocation}` : null
+                        `tooltip-location-${tooltipLocation}`
                     )}
                 >
                     {formFieldContent}
