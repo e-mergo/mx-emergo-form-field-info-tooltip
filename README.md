@@ -97,6 +97,10 @@ Requests for additional features can be posted in the widget's GitHub repository
 
 ## Changelog
 
+#### 1.3.2 - 20260112
+
+-   Fixed inserting the tooltip icon multiple times in form field mode when other objects caused a rerender.
+
 #### 1.3.1 - 20260112
 
 -   Fixed inserting the tooltip icon in form field labels that use dynamic data.
