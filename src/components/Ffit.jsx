@@ -83,7 +83,7 @@ export function Ffit({
         const controlLabel = formFieldContainerRef.current?.querySelector(".control-label");
 
         // Bail when the label element is not found
-        if (!controlLabel) return
+        if (!controlLabel) return;
 
         // Wrap the label content
         labelContainer.innerHTML = controlLabel.innerHTML;
@@ -105,23 +105,27 @@ export function Ffit({
     }
 
     // Watch form field container
-    useMutationObserver(formFieldContainerRef, (mutationList) => {
+    useMutationObserver(
+        formFieldContainerRef,
+        mutationList => {
+            // Search whether added node is the tooltip container
+            const isContainerAdded = mutationList.reduce(
+                (is, mutation) => is || tooltipContainer === mutation.addedNodes[0],
+                false
+            );
 
-        // Search whether added node is the tooltip container
-        const isContainerAdded = mutationList.reduce((is, mutation) => {
-            return is || tooltipContainer === mutation.addedNodes[0];
-        }, false);
+            // Tooltip container addition is observed
+            if (isContainerAdded) return;
 
-        // Tooltip container addition is observed
-        if (isContainerAdded) return;
-
-        // Add the tooltip container
-        insertFormFieldTooltip();
-    }, {
-        childList: true, // Observe when already inserted
-        characterData: true, // Observe when not inserted
-        subtree: true
-    });
+            // Add the tooltip container
+            insertFormFieldTooltip();
+        },
+        {
+            childList: true, // Observe when already inserted
+            characterData: true, // Observe when not inserted
+            subtree: true
+        }
+    );
 
     // Act when rendering the element
     useEffect(() => {
@@ -144,10 +148,7 @@ export function Ffit({
             {isFormFieldMode && (
                 <div
                     ref={formFieldContainerRef}
-                    className={classNames(
-                        "form-field-with-info-tooltip",
-                        `tooltip-location-${tooltipLocation}`
-                    )}
+                    className={classNames("form-field-with-info-tooltip", `tooltip-location-${tooltipLocation}`)}
                 >
                     {formFieldContent}
                     {createPortal(
