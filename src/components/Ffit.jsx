@@ -85,6 +85,9 @@ export function Ffit({
         // Bail when the label element is not found
         if (!controlLabel) return;
 
+        // Bail when inserted already
+        if (-1 !== [controlLabel.firstElementChild, controlLabel.lastElementChild].indexOf(tooltipContainer)) return;
+
         // Wrap the label content
         labelContainer.innerHTML = controlLabel.innerHTML;
 
@@ -114,10 +117,10 @@ export function Ffit({
                 false
             );
 
-            // Tooltip container addition is observed
+            // Tooltip container insert is observed
             if (isContainerAdded) return;
 
-            // Add the tooltip container
+            // Insert the tooltip container
             insertFormFieldTooltip();
         },
         {
